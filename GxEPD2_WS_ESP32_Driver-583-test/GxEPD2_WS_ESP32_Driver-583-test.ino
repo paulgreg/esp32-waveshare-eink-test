@@ -133,18 +133,18 @@ GxEPD2_DISPLAY_CLASS<GxEPD2_DRIVER_CLASS, MAX_HEIGHT(GxEPD2_DRIVER_CLASS)> displ
 //GxEPD2_BW<GxEPD2_154_D67, GxEPD2_154_D67::HEIGHT> display(GxEPD2_154_D67(/*CS=*/ 15, /*DC=*/ 27, /*RST=*/ 26, /*BUSY=*/ 25)); // GDEH0154D67
 
 // comment out unused bitmaps to reduce code space used
-#include "bitmaps/Bitmaps200x200.h" // 1.54" b/w
-#include "bitmaps/Bitmaps104x212.h" // 2.13" b/w flexible GDEW0213I5F
-#include "bitmaps/Bitmaps128x250.h" // 2.13" b/w
-#include "bitmaps/Bitmaps128x296.h" // 2.9"  b/w
-#include "bitmaps/Bitmaps176x264.h" // 2.7"  b/w
-#include "bitmaps/Bitmaps400x300.h" // 4.2"  b/w
-#include "bitmaps/Bitmaps640x384.h" // 7.5"  b/w
+// #include "bitmaps/Bitmaps200x200.h" // 1.54" b/w
+// #include "bitmaps/Bitmaps104x212.h" // 2.13" b/w flexible GDEW0213I5F
+// #include "bitmaps/Bitmaps128x250.h" // 2.13" b/w
+// #include "bitmaps/Bitmaps128x296.h" // 2.9"  b/w
+// #include "bitmaps/Bitmaps176x264.h" // 2.7"  b/w
+// #include "bitmaps/Bitmaps400x300.h" // 4.2"  b/w
+// #include "bitmaps/Bitmaps640x384.h" // 7.5"  b/w
 // 3-color
-#include "bitmaps/Bitmaps3c200x200.h" // 1.54" b/w/r
-#include "bitmaps/Bitmaps3c104x212.h" // 2.13" b/w/r
-#include "bitmaps/Bitmaps3c128x296.h" // 2.9"  b/w/r
-#include "bitmaps/Bitmaps3c176x264.h" // 2.7"  b/w/r
+// #include "bitmaps/Bitmaps3c200x200.h" // 1.54" b/w/r
+// #include "bitmaps/Bitmaps3c104x212.h" // 2.13" b/w/r
+// #include "bitmaps/Bitmaps3c128x296.h" // 2.9"  b/w/r
+// #include "bitmaps/Bitmaps3c176x264.h" // 2.7"  b/w/r
 #include "bitmaps/Bitmaps3c400x300.h" // 4.2"  b/w/r
 
 #if defined(ESP32) && defined(USE_HSPI_FOR_EPD)
@@ -167,22 +167,22 @@ void setup()
   display.init(115200);
   // first update should be full refresh
   helloWorld();
-  delay(1000);
+  delay(5000);
   // partial refresh mode can be used to full screen,
   // effective if display panel hasFastPartialUpdate
   helloFullScreenPartialMode();
-  delay(1000);
+  delay(5000);
   helloArduino();
-  delay(1000);
+  delay(5000);
   helloEpaper();
-  delay(1000);
+  delay(5000);
   showFont("FreeMonoBold9pt7b", &FreeMonoBold9pt7b);
-  delay(1000);
+  delay(5000);
   drawBitmaps();
   if (display.epd2.hasPartialUpdate)
   {
     showPartialUpdate();
-    delay(1000);
+    delay(5000);
   } // else // on GDEW0154Z04 only full update available, doesn't look nice
   //drawCornerTest();
   //showBox(16, 16, 48, 32, false);
