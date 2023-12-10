@@ -38,7 +38,13 @@
 //
 // 2.7 inch screen
 //
-// GxEPD2_3C<GxEPD2_270c, GxEPD2_270c::HEIGHT> display(GxEPD2_270c(/*CS=*/ 15, /*DC=*/ 27, /*RST=*/ 26, /*BUSY=*/ 25));
+// --------------------------------
+// WARNING, use version 1.4.x !!!
+// --------------------------------
+//
+GxEPD2_3C<GxEPD2_270c, GxEPD2_270c::HEIGHT> display(GxEPD2_270c(/*CS=*/ 15, /*DC=*/ 27, /*RST=*/ 26, /*BUSY=*/ 25));
+
+
 
 //
 // 5.83 inch screen
@@ -49,19 +55,15 @@
 // RST 	D8
 // BUSY 	D7 	
 
-// GxEPD2_3C < GxEPD2_583c_Z83, GxEPD2_583c_Z83::HEIGHT / 4 > display(GxEPD2_583c_Z83(/*CS=D8*/ SS, /*DC=D3*/ 0, /*RST=D4*/ 2, /*BUSY=D2*/ 4)); // GDEW0583Z83 648x480, GD7965
-GxEPD2_3C < GxEPD2_583c_Z83, GxEPD2_583c_Z83::HEIGHT / 4 > display(GxEPD2_583c_Z83(/*CS=D8*/ SS, /*DC=D3*/ 0, /*RST=D4*/ 2, /*BUSY=D2*/ 4)); // GDEW0583Z83 648x480, GD7965
-// GxEPD2_3C < GxEPD2_583c_Z83, GxEPD2_583c_Z83::HEIGHT / 4 > display(GxEPD2_583c_Z83(/*CS=D8*/ 10, /*DC=D3*/ 9, /*RST=D4*/ 7, /*BUSY=D2*/ 8)); // GDEW0583Z83 648x480, GD7965
-// GxEPD2_3C<GxEPD2_583c, GxEPD2_583c::HEIGHT(GxEPD2_583c)> display(GxEPD2_583c(/*CS=10*/ SS, /*DC=*/ 8, /*RST=*/ 9, /*BUSY=*/ 7)); // GDEW0583Z21 600x448, UC8179 (IL0371)
-// GxEPD2_3C<GxEPD2_583c_Z83, GxEPD2_583c_Z83::HEIGHT(GxEPD2_583c_Z83)> display(GxEPD2_583c_Z83(/*CS=10*/ SS, /*DC=*/ 8, /*RST=*/ 9, /*BUSY=*/ 7)); // GDEW0583Z83 648x480, GD7965
+//GxEPD2_3C < GxEPD2_583c_Z83, GxEPD2_583c_Z83::HEIGHT / 4 > display(GxEPD2_583c_Z83(/*CS=D8*/ SS, /*DC=D3*/ 0, /*RST=D4*/ 2, /*BUSY=D2*/ 4)); // GDEW0583Z83 648x480, GD7965
 
 
 
 #endif
 
 // comment out unused bitmaps to reduce code space used
-// #include "bitmaps/Bitmaps3c176x264.h" // 2.7"  b/w/r
-#include "bitmaps/Bitmaps3c648x480.h" // 5.83" b/w/r
+#include "bitmaps/Bitmaps3c176x264.h" // 2.7"  b/w/r
+// #include "bitmaps/Bitmaps3c648x480.h" // 5.83" b/w/r
 
 void setup()
 {
