@@ -30,7 +30,6 @@
 #include <GxEPD2_3C.h>
 #include <Fonts/FreeMonoBold9pt7b.h>
 
-#if defined(ESP32)
 // ***** for mapping of Waveshare ESP32 Driver Board *****
 // use Board "ESP32 Dev Module" to build with Arduino IDE
 // select one, can use full buffer size (full HEIGHT)
@@ -42,9 +41,7 @@
 // WARNING, use version 1.4.x !!!
 // --------------------------------
 //
-GxEPD2_3C<GxEPD2_270c, GxEPD2_270c::HEIGHT> display(GxEPD2_270c(/*CS=*/ 15, /*DC=*/ 27, /*RST=*/ 26, /*BUSY=*/ 25));
-
-
+// GxEPD2_3C<GxEPD2_270c, GxEPD2_270c::HEIGHT> display(GxEPD2_270c(/*CS=*/ 15, /*DC=*/ 27, /*RST=*/ 26, /*BUSY=*/ 25));
 
 //
 // 5.83 inch screen
@@ -53,29 +50,29 @@ GxEPD2_3C<GxEPD2_270c, GxEPD2_270c::HEIGHT> display(GxEPD2_270c(/*CS=*/ 15, /*DC
 // CS 	D10
 // DC 	D9
 // RST 	D8
-// BUSY 	D7 	
+// BUSY D7 	
+// GxEPD2_3C < GxEPD2_583c_Z83, GxEPD2_583c_Z83::HEIGHT / 4 > display(GxEPD2_583c_Z83(/*CS=D8*/ SS, /*DC=D3*/ 0, /*RST=D4*/ 2, /*BUSY=D2*/ 4)); // GDEW0583Z83 648x480, GD7965
 
-//GxEPD2_3C < GxEPD2_583c_Z83, GxEPD2_583c_Z83::HEIGHT / 4 > display(GxEPD2_583c_Z83(/*CS=D8*/ SS, /*DC=D3*/ 0, /*RST=D4*/ 2, /*BUSY=D2*/ 4)); // GDEW0583Z83 648x480, GD7965
-
-
-
-#endif
+//
+// 7.5 inch screen - Waveshare ESP32 Driver Board mapping
+GxEPD2_3C<GxEPD2_750c_GDEY075Z08, GxEPD2_750c_GDEY075Z08::HEIGHT / 2> display(GxEPD2_750c_GDEY075Z08(/*CS=*/ 15, /*DC=*/ 27, /*RST=*/ 26, /*BUSY=*/ 25)); // GDEY075Z08 800x480, UC8179, (FPC-C001 21.08.30)
 
 // comment out unused bitmaps to reduce code space used
-#include "bitmaps/Bitmaps3c176x264.h" // 2.7"  b/w/r
+// #include "bitmaps/Bitmaps3c176x264.h" // 2.7"  b/w/r
 // #include "bitmaps/Bitmaps3c648x480.h" // 5.83" b/w/r
+#include "bitmaps/Bitmaps3c800x480.h" // 7.5"  b/w/r
 
 void setup()
 {
   Serial.begin(115200);
   Serial.println();
   Serial.println("setup");
-  display.init(115200); // uses standard SPI pins, e.g. SCK(18), MISO(19), MOSI(23), SS(5)
   // *** special handling for Waveshare ESP32 Driver board *** //
   // ********************************************************* //
-  SPI.end(); // release standard SPI pins, e.g. SCK(18), MISO(19), MOSI(23), SS(5)
+  SPI.end(); // release standard SPI pins
   //SPI: void begin(int8_t sck=-1, int8_t miso=-1, int8_t mosi=-1, int8_t ss=-1);
   SPI.begin(13, 12, 14, 15); // map and init SPI pins SCK(13), MISO(12), MOSI(14), SS(15)
+  display.init(115200); // initialize display after SPI is configured
   // *** end of special handling for Waveshare ESP32 Driver board *** //
   // **************************************************************** //
   // first update should be full refresh
@@ -120,7 +117,7 @@ const char HelloEpaper[] = "Hello E-Paper!";
 
 void helloWorld()
 {
-  //Serial.println("helloWorld");
+  Serial.println("helloWorld");
   display.setRotation(1);
   display.setFont(&FreeMonoBold9pt7b);
   display.setTextColor(GxEPD_BLACK);
@@ -138,7 +135,7 @@ void helloWorld()
     display.print(HelloWorld);
   }
   while (display.nextPage());
-  //Serial.println("helloWorld done");
+  Serial.println("helloWorld done");
 }
 
 void helloWorldForDummies()
